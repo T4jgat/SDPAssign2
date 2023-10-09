@@ -1,6 +1,7 @@
 package kz.t4jgat;
 
-public class Americano extends Coffee {
+// A class describing an americano object without wrappers
+public class Americano implements Coffee {
     String description = "Americano\n";
     @Override
     public String getDescription() {

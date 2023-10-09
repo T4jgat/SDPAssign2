@@ -3,13 +3,18 @@ package kz.t4jgat;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+// Console interface of the program
 public class CoffeeCLI {
-    static DecimalFormat df = new DecimalFormat("0.00");
+    static DecimalFormat df = new DecimalFormat("0.00"); // formatting floating point numbers
     static Scanner sc = new Scanner(System.in);
-    public static void cli() {
-        Coffee coffee = null;
-        String action = "-";
 
+    // Show CLI
+    public static void cli() {
+        Coffee coffee = null; // Empty coffee object that will gradually fill up
+
+        String action = "-"; // Action variable
+
+        // the method will be executed until the user exits it
         while (!action.equals("e")) {
             System.out.print("""
                     \n[1] Select base
@@ -18,25 +23,33 @@ public class CoffeeCLI {
                     >>\s""");
             action = sc.next();
 
+            // action options
             switch (action) {
                 case "1" -> {
                     coffee = baseSelection();
                     break;
                 }
                 case "2" -> {
-                    if (coffee == null) {
-                        System.out.println("\nError: The base was not selected");
+                    //In another case, you can opt for a coffee additive
+                    if (coffee != null) {
+                        coffee = additiveSelection(coffee);
+                    // If no coffee base is selected, an error is displayed
                     } else {
-                        coffee = supplementSelection(coffee);
+                        System.out.println("\nError: The base was not selected");
                     }
                     break;
                 }
                 case "3" -> {
-                    assert coffee != null;
-                    System.out.println("\nOrder:" + "\n\t" +coffee.getDescription());
-                    System.out.println("Total cost: $" + df.format(coffee.cost()));
+                    // shows the total order if the coffee object is not empty
+                    if (coffee != null) {
+                        System.out.println("\nOrder:" + "\n\t" + coffee.getDescription());
+                        System.out.println("Total cost: $" + df.format(coffee.cost()));
+                    }else{
+                        System.out.println("\nError: The coffee was not selected");
+                    }
                     break;
                 }
+                //  method exit
                 case "e"-> {
                     System.out.println("EXIT...");
                 }
@@ -47,19 +60,24 @@ public class CoffeeCLI {
         }
     }
 
+    // Set the base coffee
     private static Coffee baseSelection() {
         System.out.print("""
                 \n[1] Latte
                 [2] Americano
                 >>\s""");
-        if (sc.next().equals("1")) {
+        String selection = sc.next();
+        if (selection.equals("1")) {
             return new Latte();
-        } else {
+        } else  if (selection.equals("2")){
             return new Americano();
+        } else {
+            return null;
         }
     }
 
-    private static Coffee supplementSelection(Coffee coffee) {
+    // adding options
+    private static Coffee additiveSelection(Coffee coffee) {
         String selection;
         System.out.print("""
                 \n[1] Milk
@@ -67,6 +85,8 @@ public class CoffeeCLI {
                 [3] Syrup
                 >>\s""");
         selection = sc.next();
+
+        // the decorator adds a wrapper depending on the selection
         switch (selection) {
             case "1" -> {
                 return new MilkCoffeeDecorator(coffee);
