@@ -13,6 +13,6 @@ public class MilkCoffeeDecorator extends CoffeeDecorator{
 
     @Override
     public String getDescription() {
-        return super.getDescription() + "\t+Milk ($"+ optionCost +")\n";
+        return super.getDescription() + "\t\s\s+Milk ($"+ optionCost +")\n";
     }
 }
