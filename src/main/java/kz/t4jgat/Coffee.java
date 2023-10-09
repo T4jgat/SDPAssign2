@@ -1,8 +1,8 @@
 package kz.t4jgat;
 
-public abstract class Coffee {
-    public abstract String getDescription();
-
-    public abstract double cost();
+// Method signatures for basic coffee types
+public interface Coffee {
+    public abstract String getDescription(); // Description of the coffee
+    public abstract double cost();  // cost of the coffee
 
 }

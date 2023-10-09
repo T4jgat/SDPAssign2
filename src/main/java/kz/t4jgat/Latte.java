@@ -1,7 +1,8 @@
 package kz.t4jgat;
 
-public class Latte extends Coffee {
-    String description = "Latte\n";
+// A class describing a latte object without wrappers
+public class Latte implements Coffee {
+    String description = "Latte ($" + cost() + ")\n";
 
     public String getDescription() {
         return description;

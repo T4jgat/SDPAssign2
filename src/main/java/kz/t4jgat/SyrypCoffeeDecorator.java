@@ -2,6 +2,7 @@ package kz.t4jgat;
 
 import java.util.Scanner;
 
+// Decorator for adding syrup
 public class SyrypCoffeeDecorator extends CoffeeDecorator{
     private String syrup = null;
     private final Double optionCost = 0.79;
@@ -9,6 +10,7 @@ public class SyrypCoffeeDecorator extends CoffeeDecorator{
         super(coffee);
     }
 
+    // syrup is shown in the description
     @Override
     public String getDescription() {
         if (syrup != null) {
@@ -18,6 +20,7 @@ public class SyrypCoffeeDecorator extends CoffeeDecorator{
         }
     }
 
+    // If syrup has been selected, it is added to the original cost
     @Override
     public double cost() {
         if (syrup != null) {
@@ -27,6 +30,7 @@ public class SyrypCoffeeDecorator extends CoffeeDecorator{
         }
     }
 
+    // Choosing a flavor for syrup
     public void setSyrup() {
         Scanner sc = new Scanner(System.in);
         System.out.print("""

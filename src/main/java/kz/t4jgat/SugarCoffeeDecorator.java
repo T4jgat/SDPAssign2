@@ -10,11 +10,11 @@ public class SugarCoffeeDecorator extends CoffeeDecorator {
 
     @Override
     public String getDescription() {
-        return super.getDescription() + "\t\s\s+Sugar ($"+ optionCost +")\n";
+        return super.getDescription() + "\t\s\s+Sugar ($"+ optionCost +")\n"; // sugar is shown in the description
     }
 
     @Override
     public double cost() {
-        return super.cost() + optionCost;
+        return super.cost() + optionCost; // sugar is added to the total cost
     }
 }
